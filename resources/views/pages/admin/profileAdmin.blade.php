@@ -25,7 +25,7 @@
                                     <div class="img-circular" style="background-image: url({{ request()->getSchemeAndHttpHost() }}/admin/akun/profile/get-userImage/?filename={{$data->photo}})"></div>
                                     </div>
                                     @else
-                                    <img src="http://placehold.it/300&text=Placeholder" class="avatar img-responsive">
+                                    <img src="https://www.pngkey.com/png/full/202-2024792_user-profile-icon-png-download-fa-user-circle.png" class="avatar img-responsive">
                                     @endif
                                 </div>
                                 <br>
