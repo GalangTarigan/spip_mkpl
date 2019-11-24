@@ -64,7 +64,12 @@ Route::group([ 'middleware' => 'auth' ], function () {
             Route::post('/laporan-training/buat', 'LaporanTrainingController@createLaporanTraining')->name('buatLaporanTraining');
 
             //
-        
+            Route::get('/laporan-keluhan', function(){
+                return view('pages.users.buatLaporanKeluhan');
+            });
+            Route::post('/laporan-keluhan/buat', 'LaporanKeluhanController@createLaporanKeluhan')->name('buatLaporanKeluhan');
+            Route::post('/laporan-keluhan/subjek-keluhan/data','LaporanKeluhanController@getSubjekKeluhan');
+
             //
             Route::post('/dokumentasi/foto/upload-foto', 'DokumentasiController@uploadImages')->name('imageUploads');
             Route::post('/dokumentasi/foto/delete-foto', 'DokumentasiController@deleteImage')->name('deleteImage');
