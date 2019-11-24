@@ -38,4 +38,23 @@ class LaporanKeluhanRequest extends FormRequest
         ];
         return $rules;
     }
+      /**
+     * Custom message for validation
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'namaInstansi.required' => 'Nama instansi tidak boleh kosong',
+            'namaPelapor.required' => 'Nama pelapor tidak boleh kosong',
+            'waktuLapor.required' => 'Kolom waktu lapor tidak boleh kosong',
+            'waktuLapor.date_format' => 'Kolom waktu lapor harus berisi tanggal dan waktu',
+            'waktuSelesaiPenanganan.required' => 'Kolom waktu selesai penanganan tidak boleh kosong',
+            'waktuSelesaiPenanganan.date_format' => 'Kolom waktu selesai penanganan harus berisi tanggal dan waktu',
+            'permasalahanKeluhan.required' => 'Kolom permasalahan keluhan tidak boleh kosong',
+            'solusiPermasalahanKeluhan.required' => 'Kolom solusi permasalahan tidak boleh kosong',
+            'subjekKeluhan.required' => 'Kolom subjek keluhan tidak boleh kosong'
+        ];
+    }
 }
