@@ -107,7 +107,14 @@ Route::group([ 'middleware' => 'auth' ], function () {
                 Route::post('/daftar-proyek-instalasi/data', 'ProyekController@showProyek'); //table daftar seluruh instalasi
                 Route::get('/daftar-proyek-instalasi/detail-proyek/', 'LaporanInstalasiController@getSpecificReport')->name('detail-proyek');
 
-
+                //pages keluhan
+                Route::get('/keluhan', function(){
+                    return view('pages.admin.keluhan');
+                })->name('listKeluhan');
+                Route::post('/postKeluhan','LaporanKeluhanController@showDaftarkeluhan')->name('keluhan');
+                Route::get('/keluhan/detail-keluhan','LaporanKeluhanController@indexDetailKeluhan')->name('detail-keluhan');
+                Route::post('/keluhan-per-tahun','LaporanKeluhanController@instansiKeluhan');
+                Route::get('/keluhan/detail-keluhan-per-tahun', 'LaporanKeluhanController@indexkeluhan')->name('detail-keluhan-per-tahun');
                 
 
                 //pages statistik teknisi & detail teknisi
@@ -137,6 +144,16 @@ Route::group([ 'middleware' => 'auth' ], function () {
                 //detail teknisi pages
                 Route::post('/editTeknisi','TeknisiController@editProfile')->name('edit-teknisi'); //edit teknisi function
                 Route::post('/editImageTeknisi','UserController@uploadImageProfile')->name('edit-image'); //edit teknisi function
+
+                //subjek keluhan    
+                Route::get('/manajemen/subjek-keluhan', function(){
+                    return view('pages.admin.subjekKeluhan');
+                })->name('subjek-keluhan');
+                Route::post('/manajemen/subjek-keluhan/data','LaporanKeluhanController@getSubjekKeluhan');
+                Route::post('/manajemen/subjek-keluhan/add-subjek','LaporanKeluhanController@addSubjekKeluhan')->name('add-subjek');
+                Route::post('/manajemen/subjek-keluhan/update-subjek','LaporanKeluhanController@updateSubjekKeluhan')->name('update-subjek');
+                Route::get('/manajemen/subjek-keluhan/delete-subjek','LaporanKeluhanController@deleteSubjekKeluhan')->name('delete-subjek');
+
 
                 //download as pdf
                 Route::get('/print/laporan-instalasi','LaporanInstalasiController@downloadPdf');
