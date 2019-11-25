@@ -132,6 +132,14 @@
 										<a href="{{route('showFormTraining')}}"><i class="fa fa-chalkboard-teacher"></i><span>Laporan
 												Training</span></a>
 									</li>
+									<li class="nav-separator">
+										Laporan Keluhan
+									</li>
+									<li>
+										<a href="/laporan-keluhan">
+											<i class="fab fa-teamspeak"></i>
+											<span>Buat Laporan Keluhan</span></a>
+									</li>
 									<li class="nav-separator">Akun</li>
 									<li>
 										<a href="{{route('profile')}}"><i class="fas fa-user-alt"></i><span>Profil</span></a>

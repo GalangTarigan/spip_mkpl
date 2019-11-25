@@ -63,23 +63,10 @@ class InstansiController extends Controller
             return redirect()->back()->with('fail', 'Instansi gagal ditambahkan');
         }
     }
-    /**
-     * Get list instansi based on queries
-     * 
-     * @param Request
-     * @return response
-     */
+    
     public function getInstansi(Request $request)
     {
-        if($request->q == "all") $result = Instansi::with('laporan_instalasi')->orderBy('nama_instansi')->get();
-        else if($request->q == "hasReport") $result = Instansi::with('laporan_instalasi')->has('laporan_instalasi')->orderBy('nama_instansi')->get();
-        else {
-            $result = Instansi::all();
-            return response()->json([
-                'status' => "success",
-                'instansi' => $result
-            ]);
-        }
+        $result = Instansi::with('laporan_instalasi')->has('laporan_instalasi')->get();
         $result2 = [];
         foreach ($result as $res) {
             $laporan_instalasi = $res->laporan_instalasi;
@@ -95,6 +82,8 @@ class InstansiController extends Controller
             'instansi' => $result2
         ]);
     }
+
+
     public function getDaftarPIC(Request $request)
     {
         $result = Instansi::find($request->id_instansi)->daftar_pic;
