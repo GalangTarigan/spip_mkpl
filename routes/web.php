@@ -121,8 +121,6 @@ Route::group([ 'middleware' => 'auth' ], function () {
                 
                 Route::get('/statistik/teknisi/detailTeknisi','TeknisiController@detailTeknisi')->name('detail-teknisi'); //pages detail teknisi
 
-
-
                 //pages daftar teknisi
                 Route::get('/manajemen/teknisi/daftar-teknisi','TeknisiController@indexDeleteUser')->name('daftar-teknisi'); //showpages delete teknisi
                 Route::post('/manajemen/teknisi/showUser','TeknisiController@showUser')->name('show-user'); //tampil daftar teknisi

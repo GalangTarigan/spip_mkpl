@@ -118,6 +118,7 @@
 									</ul>
 									</li>
 									<li><a href="{{route('list-kategori')}}"><i class="fa fa-tasks"></i>Kategori Instansi</a></li>
+									<li><a href="{{route('subjek-keluhan')}}"><i class="far fa-sun"></i>Subject Keluhan</a></li>
 									<li class="nav-separator">Akun</li>
 									<li><a href="{{route('profileAdmin')}}"><i class="fa fa-user"></i><span>Profil</span></a></li>
 									<li><a href="{{route('gantiPasswordAdmin')}}"><i class="fas fa-unlock-alt"></i><span>Ganti Password</span></a></li>
