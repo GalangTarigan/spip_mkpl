@@ -30,6 +30,7 @@ class LaporanKeluhanController extends Controller
         $laporan_keluhan->waktu_selesai_penanganan = $this->convertToTimeStamps($request->waktuSelesaiPenanganan);
         $laporan_keluhan->permasalahan = $request->permasalahanKeluhan;
         $laporan_keluhan->solusi = $request->solusiPermasalahanKeluhan;
+        $laporan_keluhan->nama_teknisi = auth()->user()->nama_lengkap;
         $laporan_keluhan->save();
 
         //create new laporan_keluhan_daftar_subjek 
