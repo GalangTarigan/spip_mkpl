@@ -40,14 +40,7 @@ class LaporanKeluhanController extends Controller
             $daftar_subjek[$i]->laporan_keluhan_id = $laporan_keluhan->id_keluhan;
             $daftar_subjek[$i]->subjek_keluhan_id = $request->subjekKeluhan[$i];
             $daftar_subjek[$i]->save();
-        }
-        $author = User::find(auth()->user()->id);
-        $admin = User::where('role', 'admin')->get();
-            //notify admins
-            foreach ($admin as $user) {
-                $user->notify(new complaintReportCreated($author, $laporan_keluhan));
-            }
-        $author->notify(new complaintReportCreated($author, $laporan_keluhan));   
+        }  
         return redirect()->back()->with('success', 'Laporan keluhan berhasil dibuat');
     }
 
