@@ -34,7 +34,6 @@ class LaporanKeluhanController extends Controller
         $laporan_keluhan->save();
 
         //create new laporan_keluhan_daftar_subjek 
-        //masih error
         for($i= 0; $i < count($request->subjekKeluhan) ; $i++){
             $daftar_subjek[$i] = new Laporan_Keluhan_Daftar_Subjek();
             $daftar_subjek[$i]->laporan_keluhan_id = $laporan_keluhan->id_keluhan;
@@ -45,7 +44,6 @@ class LaporanKeluhanController extends Controller
     }
 
     public function indexDetailKeluhan(Request $request){ //halaman detail keluhan
-        // $anjing = 9;
         $keluhan = Laporan_Keluhan::with('daftar_subjek.subjek_keluhan', 'instansi.daftar_pic')
         ->where('laporan_keluhan.uuid', $request->keluhan)->get();
         if (auth()->user()->hasAdminRole()) return view('pages.admin.detailKeluhanAdmin', compact('keluhan'));
