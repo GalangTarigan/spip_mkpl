@@ -42,21 +42,6 @@ class LaporanKeluhanController extends Controller
         }  
         return redirect()->back()->with('success', 'Laporan keluhan berhasil dibuat');
     }
-
-    public function indexDetailKeluhan(Request $request){ //halaman detail keluhan
-        $keluhan = Laporan_Keluhan::with('daftar_subjek.subjek_keluhan', 'instansi.daftar_pic')
-        ->where('laporan_keluhan.uuid', $request->keluhan)->get();
-        if (auth()->user()->hasAdminRole()) return view('pages.admin.detailKeluhanAdmin', compact('keluhan'));
-        else return view('pages.users.detailKeluhan', compact('keluhan'));
-    }
-
-    public function indexkeluhan (Request $request){
-        //$tahun=2019;
-        $keluhan = Laporan_Keluhan::with('daftar_subjek.subjek_keluhan', 'instansi.daftar_pic')
-        ->where('laporan_keluhan.instansi_id', $request->instansi)->whereYear('laporan_keluhan.waktu_lapor_keluhan', '=', date($request->tahun))->get();
-        return view('pages.admin.detailKeluhanProyekPerTahun', compact('keluhan'));
-    }
-
     
     public function showDaftarkeluhan(Request $request){
         $data = Laporan_Keluhan::with('daftar_subjek.subjek_keluhan')
@@ -64,7 +49,6 @@ class LaporanKeluhanController extends Controller
         return $data;
       }
     
-
     public function getSubjek($request){        
         $data = Subjek_Keluhan::select('nama_subjek')
         ->join('daftar_subjek_keluhan', 'daftar_subjek_keluhan.subjek_keluhan_id', '=', 'subjek_keluhan.id_subjek')
@@ -116,11 +100,14 @@ class LaporanKeluhanController extends Controller
         }
 
         public function instansiKeluhan (Request $request){
-            $data = Laporan_Keluhan::select('nama_instansi', 'instansi_id', 'waktu_lapor_keluhan')->join('instansi', 'instansi.id_instansi', '=', 'laporan_keluhan.instansi_id')->get()->sortBy('nama_instansi');
+            $data = Laporan_Keluhan::select('nama_instansi', 'instansi_id', 'waktu_lapor_keluhan')->
+            join('instansi', 'instansi.id_instansi', '=', 'laporan_keluhan.instansi_id')->get()->sortBy('nama_instansi');
             $res = array();
             $temp = array();
             $temp['nama_instansi'] =  $data[0]->nama_instansi;
             $temp['waktu_lapor_keluhan'] = $data[0]->waktu_lapor_keluhan;
+            $temp['instansi_id'] = $data[0]->instansi_id;
+            array_push($res, $temp);
             foreach ($data as $project) {   
                 if ($temp['nama_instansi'] === $project->nama_instansi 
                 && substr($temp['waktu_lapor_keluhan'],0,5) === substr($project->waktu_lapor_keluhan,0,5)){

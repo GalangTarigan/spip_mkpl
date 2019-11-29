@@ -109,7 +109,8 @@
 									<li><a href="{{route('daftar-proyek-instalasi-admin')}}"><i class="fa fa-tasks"></i><span>Daftar Proyek Instalasi</span></a></li>
 									<li><a href="{{route('tambah-instansi-form')}}"><i class="far fa-building"></i><span>Instansi</span></a></a></li>
 									</li>
-				
+									<li><a href="{{route('listKeluhan')}}"><i class="fab fa-teamspeak"></i><span>Keluhan</span></a>
+									</li>
 									<li class="nav-separator">Manajemen</li>
                                     <li><a href="javascript:;"><i class="fa fa-users"></i><span>Teknisi</span><span class="badge badge-primary"></span></a>
                                     <ul class="acc-menu">
