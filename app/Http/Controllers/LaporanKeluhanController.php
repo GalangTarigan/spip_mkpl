@@ -51,7 +51,6 @@ class LaporanKeluhanController extends Controller
     }
 
     public function indexDetailKeluhan(Request $request){ //halaman detail keluhan
-        // $anjing = 9;
         $keluhan = Laporan_Keluhan::with('daftar_subjek.subjek_keluhan', 'instansi.daftar_pic')
         ->where('laporan_keluhan.uuid', $request->keluhan)->get();
         if (auth()->user()->hasAdminRole()) return view('pages.admin.detailKeluhanAdmin', compact('keluhan'));
