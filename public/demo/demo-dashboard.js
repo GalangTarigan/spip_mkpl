@@ -26,7 +26,7 @@ function renderChart(data, labels) {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        stepSize: 1
+                        
                     }
                     ,
                     scaleLabel: {
