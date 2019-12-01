@@ -62,6 +62,16 @@ class LaporanTrainingController extends Controller
                     $log_laporan->save();
 
 
+                    $author = User::find(auth()->user()->id);
+                    $admin = User::where('role', 'admin')->get();
+                    //notify admins
+                    foreach ($admin as $user) {
+                        $user->notify(new trainingReportCreated($author, $laporan_training));
+                    }
+                    //notify user 
+                    $author->notify(new trainingReportCreated($author, $laporan_training));
+
+
                     return redirect('daftar-proyek-instalasi')->with('training_report_s', 'Laporan Training Berhasil Dibuat');
                 } catch (\Exception $e) {
                     return redirect('laporan-training')->withInput($request->input())->withErrors(['failed' => 'Laporan gagal dibuat, terjadi kesalahan pada sistem ']);

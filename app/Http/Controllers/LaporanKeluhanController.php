@@ -41,11 +41,17 @@ class LaporanKeluhanController extends Controller
             $daftar_subjek[$i]->subjek_keluhan_id = $request->subjekKeluhan[$i];
             $daftar_subjek[$i]->save();
         }
+        $author = User::find(auth()->user()->id);
+        $admin = User::where('role', 'admin')->get();
+        //notify admins
+        foreach ($admin as $user) {
+            $user->notify(new complaintReportCreated($author, $laporan_keluhan));
+        }
+        $author->notify(new complaintReportCreated($author, $laporan_keluhan));
         return redirect()->back()->with('success', 'Laporan keluhan berhasil dibuat');
     }
     public function indexDetailKeluhan(Request $request)
     { //halaman detail keluhan
-        // $anjing = 9;
         $keluhan = Laporan_Keluhan::with('daftar_subjek.subjek_keluhan', 'instansi.daftar_pic')
             ->where('laporan_keluhan.uuid', $request->keluhan)->get();
         if (auth()->user()->hasAdminRole()) return view('pages.admin.detailKeluhanAdmin', compact('keluhan'));

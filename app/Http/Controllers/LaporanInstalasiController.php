@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
+use App\Notifications\reportCreated;
 use App\Http\Requests\LaporanInstalasiBaruRequest;
 use App\User;
 use App\Pkl\Traits\LaporanInstalasi;
@@ -74,6 +75,14 @@ class LaporanInstalasiController extends Controller
 
             //check whether laporan instalasi was successfully created
             if ($laporan && $log) {
+                $author = User::find($laporan->user_id);
+                $admin = User::where('role', 'admin')->get();
+                //notify admins
+                foreach ($admin as $user) {
+                    $user->notify(new reportCreated($author, $laporan));
+                }
+                //notify user
+                $author->notify(new reportCreated($author, $laporan));
                 return redirect('daftar-proyek-instalasi')->with('installation_report_s', 'Laporan Instalasi Berhasil Dibuat');
             } else {
                 return redirect()->route('dashboard')->withErrors(['failed' => 'Laporan gagal dibuat']);
