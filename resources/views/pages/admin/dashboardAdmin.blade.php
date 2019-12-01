@@ -17,7 +17,7 @@
             </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                         <a class="info-tile tile-midnightblue has-footer" href="{{route('daftar-proyek-instalasi-admin')}}">
                                 <div class="tile-heading">
                                     <div class="pull-left">Semua Proyek</div>
@@ -34,7 +34,7 @@
                                 </div>
                             </a>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                         <a class="info-tile tile-sky has-footer" href="#">
                                 <div class="tile-heading">
                                     <div class="pull-left">Dalam Pengerjaan</div>
@@ -51,7 +51,7 @@
                                 </div>
                         </a>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                         <a class="info-tile tile-success has-footer" href="#">
                                 <div class="tile-heading">
                                     <div class="pull-left">Selesai</div>
@@ -67,6 +67,23 @@
                                     <div class="pull-left">Total proyek yang sudah selesai</div>
                                 </div>
                         </a>
+                </div>
+                                <div class="col-md-3">
+                <a class="info-tile tile-magenta has-footer">
+                <div class="tile-heading">
+                <div class="pull-left">Keluhan Proyek</div>
+                <div class="pull-right">
+                <div id="tilerevenues" class="sparkline-block"></div>
+                </div>
+                </div>
+                <div class="tile-body">
+                <div class="pull-left"><i class="fab fa-teamspeak"></i></div>
+                <div class="pull-right">{{$keluhan}}</div>
+                </div>
+                <div class="tile-footer">
+                <div class="pull-left">Total Keluhan Proyek</div>
+                </div>
+                </a>
                 </div>
             </div>
             <div class="row">

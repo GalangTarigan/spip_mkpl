@@ -40,10 +40,10 @@ class HomeController extends Controller
         $chartData =$this->getAllData($request);
         $totalProjects = $this->getTotalProject();
         $onProgress = $this->getTotalOnProgressProject();
-        $finishedProject = $this->getTotalFinishedProject(); 
+        $finishedProject = $this->getTotalFinishedProject();
+        $complaintProject = $this->getTotalComplaintProject(); 
         $datas = $this->timelineOnProgress();
-        return view('pages.admin.dashboardAdmin', compact('datas'),['total'=> $totalProjects,  'onProgress'=>$onProgress, 'finished'=>$finishedProject,'data'=>$chartData, 'year'=>$request->tahun ]);
-     //    return view('pages.admin.dashboardAdmin',compact('datas','chartData','totalProgress','onProgress','finishedProject','complaintProject'));
+        return view('pages.admin.dashboardAdmin', compact('datas'),['total'=> $totalProjects, 'onProgress'=>$onProgress, 'finished'=>$finishedProject,'keluhan'=>$complaintProject,'data'=>$chartData, 'year'=>$request->tahun ]);
     }
     public function getAllData(Request $request){
         if (isset($request->tahun)) {
