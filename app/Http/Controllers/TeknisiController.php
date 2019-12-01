@@ -35,6 +35,11 @@ class TeknisiController extends Controller
         return view('pages.admin.daftarTeknisi');
     }
 
+
+    public function indexStatsProyek(){
+        return view('pages.admin.statistikTeknisi');
+    }
+
     public function detailTeknisi(Request $request){
         $userProfile = User::where('uuid', $request->user)->first();
         $user = $request->name;
@@ -61,8 +66,6 @@ class TeknisiController extends Controller
             ]);
         }
     }
-
-
 
     public function addTeknisi(AddTeknisiRequest $request){ //addteknsii to db
         $user = new User();
@@ -113,5 +116,79 @@ class TeknisiController extends Controller
         }
 
 
+        public function statsTeknisi(Request $request){ //show table statisitk teknisi pada statistik teknisi page
+            $data = User::all()->where('role', '!=', 'admin');
+            $res = array();
+            $temp = array();
+            foreach ($data as $user) {            
+                $temp['id'] = $user->id;
+                $temp['uuid'] = $user->uuid;
+                $temp['nama_lengkap'] =  $user->nama_lengkap;
+                $temp['projects_amount'] = count(DB::table('laporan_instalasi')->where('user_id', $user->id)->where('status', '!=', 'Dalam Pengerjaan')->get());
+                $temp['average_duration'] = $this->getAverageProjectLength($user->id);
+                array_push($res, $temp);
+            }
+            return $res;
+        }
+    
+        public function getAverageProjectLength($id) { //untuk menghitung rata rata waktu instalasi teknisi pada tabel statistik teknisi
+            $projects = Laporan_Instalasi::where('user_id', $id)->where('status', '!=', 'Dalam Pengerjaan')->get();
+            $project_amount = count($projects);
+            $total_time = 0;
+    
+            foreach ($projects as $project) {
+                $total_time = $total_time + (strtotime($project->waktu_selesai) - strtotime($project->waktu_mulai));
+            }
+            if ($project_amount == 0) {
+                return 'Project tidak ada / belum selesai';
+            }
+    
+            $avg = ($total_time / $project_amount);
+    
+            // $month = floor($avg / 2628000);
+            // $avg = $avg % 2628000;
+            $day = floor($avg / 86400);
+            $avg = $avg % 86400;
+            $hour = floor($avg / 3600);
+            $avg = $avg % 3600;
+            $min = floor($avg / 60);
+            $avg = $avg % 60;
+            $sec = $avg;
+    
+            return $day.' hari '.$hour.' jam '.$min.' menit';
+        }
+    
+        public function detailTeknisiBar(Request $request)
+        { //bar chart proyek yang dilakukan terakhir pada halaman detail teknisi
+            $data = Laporan_Instalasi::select('nama_instansi', 'user_nama', 'instansi_id')
+                ->join('instansi', 'instansi.id_instansi', '=', 'laporan_instalasi.instansi_id')
+                ->where('status', '!=', 'Dalam Pengerjaan')
+                ->where('user_nama', $request->user)->distinct('nama_instansi', 'instansi_id')->get();
+            $title = array();
+            $duration = array();
+            foreach ($data as $temp) {
+                $temp_title = $temp->nama_instansi;
+                $temp_duration = $this->getDuration($temp->user_nama, $temp->instansi_id);
+                array_push($title, $temp_title);
+                array_push($duration, $temp_duration);
+            }
+            return compact('title', 'duration');
+        }
+    
+        public function getDuration($user_nama, $instansi_id)
+        {
+            $projects = Laporan_Instalasi::where('user_nama', $user_nama)->where('instansi_id', $instansi_id)
+            ->where('status', '!=', 'Dalam Pengerjaan')->get();
+            $total_time = 0;
+            foreach ($projects as $project) {
+                $total_time = $total_time + (strtotime($project->waktu_selesai) - strtotime($project->waktu_mulai));
+            }
+            $tot = $total_time;
+            $hour = floor($tot / 3600);
+            $tot = $tot % 3600;
+            $min = floor($tot / 60);
+            $tot = $tot % 60;
+            return $hour;
+        }
 
 }

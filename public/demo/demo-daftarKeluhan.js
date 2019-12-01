@@ -90,6 +90,10 @@ $(function () {
             $('#errorLoading').fadeIn(209)
         }
     });
+    $('#table').on('click', 'tbody tr', function () {
+        let keluhan = table.row(this).data().uuid;
+        window.location.href = '/admin/keluhan/detail-keluhan?keluhan=' + keluhan;
+    });
 })
 
 
@@ -156,6 +160,13 @@ $(function () {
             $('<span >Data tidak dapat dimuat, harap refresh ulang halaman</span>').appendTo($('.text-center'))
             $('#errorLoading').fadeIn(209)
         }
+    });
+    $('#mytable').on('click', 'tbody tr', function () {
+        let instansi_id = table.row(this).data().instansi_id;
+        let waktu_lapor_keluhan = table.row(this).data().waktu_lapor_keluhan.substr(0, 4);
+        // console.log(nama_instansi)
+        console.log(waktu_lapor_keluhan)
+         window.location.href = '/admin/keluhan/detail-keluhan-per-tahun?instansi=' + instansi_id + '&tahun=' + waktu_lapor_keluhan;
     });
 })
 

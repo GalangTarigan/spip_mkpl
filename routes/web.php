@@ -113,7 +113,32 @@ Route::group([ 'middleware' => 'auth' ], function () {
                 })->name('listKeluhan');
                 Route::post('/postKeluhan','LaporanKeluhanController@showDaftarkeluhan')->name('keluhan');
                 Route::post('/keluhan-per-tahun','LaporanKeluhanController@instansiKeluhan');
+                Route::get('/keluhan/detail-keluhan','LaporanKeluhanController@indexDetailKeluhan')->name('detail-keluhan');
+                Route::get('/keluhan/detail-keluhan-per-tahun', 'LaporanKeluhanController@indexkeluhan')->name('detail-keluhan-per-tahun');
                 
+
+                //pages statistik proyek & detail proyek
+                Route::get('/statistik/proyek','ProyekController@indexStatsProyek')->name('proyek'); //show statistik proyek                
+                Route::post('/statistik/proyek/tabelDetailProyek','ProyekController@detailProyek')->name('tabel-detail-proyek'); //table daftar proyek per kota pada page detail proyek
+                Route::post('/statistik/proyek/barProyek','ProyekController@barProyek')->name('bar-Proyek'); //bar chart pada halaman statistik proyek
+                Route::get('/statistik/proyek/barDetailProyek','ProyekController@barDetailProyek')->name('bar-detail-Proyek'); //bar chart pada halaman detail proyek
+                Route::get('/statistik/proyek/detailProyek','ProyekController@indexDetailProyek')->name('detail-proyek'); //show detail proyek pages
+                Route::post('/statistik/proyek-instalasi','ProyekController@duplicateRow')->name('proyek-instalasi'); //untuk tabel proyek per provinsi
+
+                //pages statistik teknisi & detail teknisi
+                Route::get('/statistik/teknisi','TeknisiController@indexStatsProyek')->name('teknisi'); //pages teknsi
+                Route::post('/statistik/statsTeknisi', 'TeknisiController@statsTeknisi')->name('statsTeknisi');//get data stats teknisi
+                Route::get('/statistik/teknisi/detailTeknisi','TeknisiController@detailTeknisi')->name('detail-teknisi'); //pages detail teknisi
+                Route::get('/statistik/teknisi/detailTeknisiBar','TeknisiController@detailTeknisiBar')->name('detail-teknisi-bar'); //detail teknisi bar chart
+
+                //pages statistik keluhan proyek
+                Route::get('/statistik/keluhan-proyek', function(){
+                    return view('pages.admin.statistikKeluhanProyek');
+                })->name('keluhan-proyek');
+                Route::post('/statistik/keluhan-proyek/bar-keluhan', 'LaporanKeluhanController@barKeluhan')->name('bar-keluhan');
+
+
+
                 //pages statistik teknisi & detail teknisi
                 Route::get('/statistik/teknisi/detailTeknisi','TeknisiController@detailTeknisi')->name('detail-teknisi'); //pages detail teknisi
 

@@ -16,6 +16,7 @@
         <ol class="breadcrumb">
             <li><a href="{{route('dashboardAdmin')}}">Home</a></li>
             <li>Statistik</li>
+            <li><a href="{{route('teknisi')}}">Teknisi</a></li>
             <li class="active"><a href="/detail-teknisi">Detail Teknisi</a></li>
         </ol>
         <div class="page-heading">
@@ -88,6 +89,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-8">
+                    <div class="panel panel">
+                        <div class="panel-heading">
+                            <h2>Proyek Instalasi Yang Telah Dilakukan</h2>  
+                        </div>
+                        <div class="panel-body">
+                                <div class="text-center" id="msg-info">
+                            <canvas id="bar-chart" style="width:42% !important; height:42% !important;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div> <!-- .container-fluid -->
     </div> <!-- #page-content -->
 </div>
