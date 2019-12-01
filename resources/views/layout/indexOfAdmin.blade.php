@@ -111,6 +111,14 @@
 									</li>
 									<li><a href="{{route('listKeluhan')}}"><i class="fab fa-teamspeak"></i><span>Keluhan</span></a>
 									</li>
+									<li class="nav-separator"></li>
+									<li><a href="javascript:;"><i class="fa fa-chart-line"></i><span>Statistik</span><span class="badge badge-primary"></span></a>
+                                        <ul class="acc-menu">
+										<li><a href="{{route('proyek')}}">Proyek</a></li>
+										<li><a href="{{route('teknisi')}}">Teknisi</a></li>
+										<li><a href="{{route('keluhan-proyek')}}">Keluhan Proyek</a></li>
+                                        </ul>
+										</li>
 									<li class="nav-separator">Manajemen</li>
                                     <li><a href="javascript:;"><i class="fa fa-users"></i><span>Teknisi</span><span class="badge badge-primary"></span></a>
                                     <ul class="acc-menu">
