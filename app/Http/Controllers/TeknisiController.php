@@ -137,7 +137,7 @@ class TeknisiController extends Controller
             $total_time = 0;
     
             foreach ($projects as $project) {
-                $total_time = $total_time + (strtotime($project->waktu_mulai) - strtotime($project->waktu_selesai));
+                $total_time = $total_time + (strtotime($project->waktu_selesai) - strtotime($project->waktu_mulai));
             }
             if ($project_amount == 0) {
                 return 'Project tidak ada / belum selesai';
@@ -181,7 +181,7 @@ class TeknisiController extends Controller
             ->where('status', '!=', 'Dalam Pengerjaan')->get();
             $total_time = 0;
             foreach ($projects as $project) {
-                $total_time = $total_time + (strtotime($project->waktu_mulai) - strtotime($project->waktu_selesai));
+                $total_time = $total_time + (strtotime($project->waktu_selesai) - strtotime($project->waktu_mulai));
             }
             $tot = $total_time;
             $hour = floor($tot / 3600);

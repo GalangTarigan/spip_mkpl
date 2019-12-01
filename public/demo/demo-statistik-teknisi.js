@@ -10,7 +10,7 @@ $(function(){
     var table
     $.ajax({
 		url: "/admin/statistik/statsTeknisi",
-		type: 'get',
+		type: 'post',
 		data: {
             "_token" : token,              
 		},
