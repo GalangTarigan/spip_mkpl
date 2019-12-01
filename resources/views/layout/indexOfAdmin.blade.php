@@ -51,6 +51,22 @@
 		<a class="navbar-brand" href="/">Avenger</a>
 
 		<ul class="nav navbar-nav toolbar pull-right">
+		<li  class="dropdown toolbar-icon-bg">
+						<a href="#" class="hasnotifications dropdown-toggle" data-toggle='dropdown'><span class="icon-bg"><i data-count="0	" class="fa fa-fw fa-bell"></i></span><span class="notif-count badge badge-info"></span></a>
+						<div class="dropdown-menu dropdown-alternate notifications arrow">
+							<div class="dd-header">
+								<span>Notifikasi</span>
+							</div>
+							<div class="scrollthis scroll-pane">
+								<ul id="notificationsWrapper" class="scroll-content">
+								</ul>
+							</div>
+							<div class="dd-footer">
+								<a href="{{route('notifikasiAdmin')}}">Lihat Semua Notifikasi</a>
+							</div>
+						</div>
+					</li>
+
 				<li class="dropdown toolbar-icon-bg" style="padding-right: 8px;">
 						<a href="" class="dropdown-toggle" data-toggle='dropdown'><span class="icon-bg"><i
 									class="fas fa-fw fa-user"></i></span></a>
@@ -131,7 +147,7 @@
 									<li class="nav-separator">Akun</li>
 									<li><a href="{{route('profileAdmin')}}"><i class="fa fa-user"></i><span>Profil</span></a></li>
 									<li><a href="{{route('gantiPasswordAdmin')}}"><i class="fas fa-unlock-alt"></i><span>Ganti Password</span></a></li>
-										
+									<li><a href="{{route('notifikasiAdmin')}}"><i class="far fa-bell"></i><span>Notifikasi</span></a></li>
 									<li><a onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out-alt"></i><span>Keluar</span></a>
 										<form id="logout-form" action="{{route('logoutAdmin')}}" method="POST" style="display: none;">
 											@csrf

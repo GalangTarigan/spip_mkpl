@@ -22,7 +22,7 @@ Route::group([ 'middleware' => 'auth' ], function () {
         Route::get('akun/profile', 'UserController@showProfile')->name('profile');
         Route::post('akun/profile/upload-image', 'UserController@uploadImageProfile')->name('uploadProfile');
         Route::get('akun/profile/get-userImage/', 'UserController@getUserImage')->name('getImgProfile');
-        //
+        Route::get('/akun/notifikasi', 'UserController@allNotifications')->name('notifikasi');
         Route::post('post-ganti-password', 'UserController@gantiPassword')->name('postGantiPassword');
         //
         Route::get('/dokumentasi/foto/get-foto', 'DokumentasiController@getImage')->name('getImage');    
@@ -80,6 +80,9 @@ Route::group([ 'middleware' => 'auth' ], function () {
             Route::post('/statistik/proyek/list-proyek', 'ProyekController@listProjectBetweenTwoDates');
                 
         });
+        //unread notification routes
+        Route::get('/unreadNotifications', 'UserController@unreadNotifications');
+
         //Middleware admin routes prefix admin eg admin/....
         Route::group(['middleware'=>'admin', 'prefix'=>'admin'], function(){
                 Route::get('/', function () {
@@ -91,6 +94,7 @@ Route::group([ 'middleware' => 'auth' ], function () {
                 Route::post('akun/logout', 'Auth\LoginController@logout')->name('logoutAdmin');
                 Route::get('akun/profile', 'UserController@showProfile')->name('profileAdmin');
                 Route::get('akun/profile/get-userImage/', 'UserController@getUserImage')->name('getImgProfileAdmin');
+                Route::get('akun/notifikasi', 'UserController@allNotifications')->name('notifikasiAdmin');
                 Route::get('akun/ganti-password', 'UserController@indexGantiPassword')->name('gantiPasswordAdmin');
 
                 //
