@@ -188,6 +188,10 @@
 	<script type="text/javascript" src="{{asset('plugins/nanoScroller/js/jquery.nanoscroller.min.js')}}"></script>		<!-- nano scroller for multiple level-->
 	<script type="text/javascript" src="{{asset('plugins/jquery-mousewheel/jquery.mousewheel.min.js')}}"></script>	<!-- Mousewheel support needed for jScrollPane -->
 	<script type="text/javascript" src="{{asset('js/application.js')}}"></script>
+	<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+	<!--notifications prequisite script-->
+	<script type="text/javascript" src="{{ asset('demo/notifications-alert-admin.js') }}"></script>
+	<!-- notifications -->
 	<script type="text/javascript" src="{{ asset('js/sweetalert2.all.js') }}"></script>
 	<script type="text/javascript" src="{{asset('plugins/moment/moment-with-locales.js')}}"></script>
 	<!--Moment JS-->							

@@ -219,8 +219,14 @@
 	<!-- Mousewheel support needed for jScrollPane -->
 	<script type="text/javascript" src="{{ asset('js/application.js') }}"></script>
 
+	<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+	<!--notifications prequisite script-->
+
 	<script type="text/javascript" src="{{ asset('js/loading-bar.js') }}"></script>
 	<!-- Loading bar -->
+
+	<script type="text/javascript" src="{{ asset('demo/notifications-alert-users.js') }}"></script>
+	<!-- notifications -->
 
 	<script type="text/javascript" src="{{ asset('js/sweetalert2.all.js') }}"></script>
 	<!-- sweet alert -->
