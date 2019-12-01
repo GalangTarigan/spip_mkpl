@@ -115,7 +115,7 @@ class ProyekController extends Controller
         $projects = Laporan_Instalasi::where('instansi_id', $instansi_id)->where('status', '!=', 'Dalam Pengerjaan')->get();
         $total_time = 0;
         foreach ($projects as $project) {
-            $total_time = $total_time + (strtotime($project->waktu_mulai) - strtotime($project->waktu_selesai));
+            $total_time = $total_time + (strtotime($project->waktu_selesai) - strtotime($project->waktu_mulai));
         }
         $tot = $total_time;
         $hour = floor($tot / 3600);
