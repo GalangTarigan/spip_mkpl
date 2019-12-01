@@ -5,7 +5,7 @@ $(function () {
 	$("#table").css("cursor", "pointer")
 	$('#spinner').fadeIn()
 	$.ajax({
-		url: "/instansi/daftar-instansi",
+		url: "/instansi/daftar-instansi-semua",
 		type: 'post',
 		data: {
 			"_token": token,

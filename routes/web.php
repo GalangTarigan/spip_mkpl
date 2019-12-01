@@ -31,6 +31,7 @@ Route::group([ 'middleware' => 'auth' ], function () {
 
         //
         Route::post('/instansi/daftar-instansi', 'InstansiController@getInstansi');
+        Route::post('/instansi/daftar-instansi-semua', 'InstansiController@getAllInstansi');
         Route::post('/instansi/daftar-pic', 'InstansiController@getDaftarPic');
         Route::post('/instansi/list-kategori', 'InstansiController@getListCategory');
         Route::post('/wilayah-indonesia/provinsi', 'WilayahIndonesiaController@getProvinces');

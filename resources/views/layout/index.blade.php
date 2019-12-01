@@ -12,17 +12,13 @@
 	<!-- CSRF Token -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<script>
-		window.Laravel = {
-			!!json_encode(['csrfToken' => csrf_token()]) !!
-		}
-	</script>
+        window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!}
+    </script>
 	@if(!auth()->guest())
-	<script>
-		window.Laravel.userId = {
-			!!auth() - > user() - > id!!
-		}
-	</script>
-	@endif
+        <script>
+            window.Laravel.userId = {!! auth()->user()->id !!}
+        </script>
+    @endif
 	<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 
 	<link rel="shortcut icon" href="https://www.nakulasadewa.com/wp-content/uploads/2017/08/KiosK-Mesin-Antrian.png" type="image/x-icon">

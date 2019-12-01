@@ -66,7 +66,7 @@ class InstansiController extends Controller
     
     public function getInstansi(Request $request)
     {
-        $result = Instansi::with('laporan_instalasi')->has('laporan_instalasi')->get();
+        $result = Instansi::with('laporan_instalasi')->get();
         $result2 = [];
         foreach ($result as $res) {
             $laporan_instalasi = $res->laporan_instalasi;
@@ -83,6 +83,13 @@ class InstansiController extends Controller
         ]);
     }
 
+    public function getAllInstansi(Request $request){
+        $result = Instansi::all();
+        return response()->json([
+            'status' => "success",
+            'instansi' => $result
+        ]);
+    }
 
     public function getDaftarPIC(Request $request)
     {
