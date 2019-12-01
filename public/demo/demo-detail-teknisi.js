@@ -19,6 +19,89 @@ $("#icon").on("click", function() {
     });
 });
 
+//bar chart
+var myChart;
+function renderChart(data, labels) {
+    let ctx = document.getElementById('bar-chart');
+    if (myChart != null) myChart.destroy()
+    myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    data: data,
+                    backgroundColor: bgColor(data),
+                }
+            ]
+        },
+        options: {
+            responsive: "false",
+            scales: {
+                yAxes: [
+                    {
+                        // barThickness: 75, //lebarnya
+                        ticks: {
+                            beginAtZero: true,
+                            fontSize: 13
+                        },
+                        scaleLabel: {
+                            fontStyle: "bold",
+                            fontSize: 15,
+                            display: true,
+                            labelString: "Durasi Instalasi per Jam"
+                        }
+                    }
+                ],
+                xAxes: [
+                    {
+                        // barThickness: 75,
+                        ticks: {
+                            fontSize: 13
+                        },
+                        barPercentage: 0.5,
+                        scaleLabel: {
+                            fontStyle: "bold",
+                            fontSize: 15,
+                            display: true,
+                            labelString: "Nama Instansi"
+                        }
+                    }
+                ]
+            },
+            legend: {
+                display: false
+            }
+        }
+    });
+
+        //generate background color
+function bgColor(data) {
+    const color = [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(113, 126, 111, 1)',
+        'rgba(130, 157, 151, 1)',
+        'rgba(108, 99, 107, 1)',
+        'rgba(38, 46, 68, 1)'
+    ]
+    var bg = []
+    let numBefore = Math.floor(Math.random() * (6 - 0 + 1) + 0)
+    $.each(data, function (index, value) {
+        let ran = randomNumber(6, 0, numBefore)
+        bg.push(color[ran])
+        numBefore = ran
+    })
+    return bg
+}
+//generating random number
+function randomNumber(max, min, except) {
+    let num = Math.floor(Math.random() * (max - min + 1)) + min;
+    return (num === except) ? randomNumber(max, min, except) : num;
+}
+}
+
 $.ajax({
     url: "/admin/statistik/teknisi/detailTeknisiBar?user=" + user,
     success: function(result) {
