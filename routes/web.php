@@ -113,6 +113,8 @@ Route::group([ 'middleware' => 'auth' ], function () {
                 })->name('listKeluhan');
                 Route::post('/postKeluhan','LaporanKeluhanController@showDaftarkeluhan')->name('keluhan');
                 Route::post('/keluhan-per-tahun','LaporanKeluhanController@instansiKeluhan');
+                Route::get('/keluhan/detail-keluhan','LaporanKeluhanController@indexDetailKeluhan')->name('detail-keluhan');
+                Route::get('/keluhan/detail-keluhan-per-tahun', 'LaporanKeluhanController@indexkeluhan')->name('detail-keluhan-per-tahun');
                 
                 //pages statistik teknisi & detail teknisi
                 Route::get('/statistik/teknisi/detailTeknisi','TeknisiController@detailTeknisi')->name('detail-teknisi'); //pages detail teknisi
